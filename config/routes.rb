@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
   root "articles#index"
-  resources :articles
+  namespace :admin do
+    patch "/admin/articles/:id" => "articles#show", as: "article_path"
+    resources :articles, only: [:new, :create, :index, :show]
+  end
 end
